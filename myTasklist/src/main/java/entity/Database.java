@@ -13,7 +13,7 @@ public class Database {
 
     private long id;
     private  String name;
-    private int rating;
+    private int priority;
 
     @Id
     @GeneratedValue(generator ="increment")
@@ -26,9 +26,9 @@ public class Database {
 
     public void setName(String name) {this.name = name;}
 
-    public int getRating() {return rating;}
+    public int getPriority() {return priority;}
 
-    public void setRating(int rating) {
-        this.rating = rating;
+    public void setPriority(int priority) {
+        this.priority = priority;
     }
 }
