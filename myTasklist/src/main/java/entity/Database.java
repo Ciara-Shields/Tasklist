@@ -11,22 +11,40 @@ import org.hibernate.annotations.GenericGenerator;
 @Table(name = "DATABASE")
 public class Database {
 
-    private long id;
-    private  String name;
-    private int priority;
-
     @Id
-    @GeneratedValue(generator ="increment")
-    @GenericGenerator(name="increment", strategy ="increment")
-    public Long getId() {return id;}
+    @GeneratedValue()
+    long id;
+    String taskName;
+    int priority;
 
-    private void setId(Long id) {this.id = id;}
+    public Database(int taskID, String taskName, int priority ) {
+        this.id = taskID;
+        this.taskName = taskName;
+        this.priority = priority;
+    }
 
-    public String getName() {return name;}
+    public Database(){
 
-    public void setName(String name) {this.name = name;}
+    }
+    public Long getId() {
+        return id;
+    }
 
-    public int getPriority() {return priority;}
+    private void setId(Long taskID) {
+        this.id = taskID;
+    }
+
+    public String getName() {
+        return taskName;
+    }
+
+    public void setName(String taskName) {
+        this.taskName = taskName;
+    }
+
+    public int getPriority() {
+        return priority;
+    }
 
     public void setPriority(int priority) {
         this.priority = priority;

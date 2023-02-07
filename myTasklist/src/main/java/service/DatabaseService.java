@@ -1,13 +1,23 @@
 package service;
 
+import entity.Database;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.scheduling.config.Task;
+import org.springframework.stereotype.Service;
 import repository.DatabaseRepository;
 
-public class DatabaseService {
+import java.util.ArrayList;
 
-    @Autowired
+@Service
+public class DatabaseService {
     DatabaseRepository databaseRepository;
 
-    public List getAllTasks
+    @Autowired
+    public DatabaseService(DatabaseRepository databaseRepository) {
+        this.databaseRepository = databaseRepository;
+    }
+    public List<Task> getAllTasks() {
+        return new ArrayList<>(databaseRepository.findAll());
+    }
 
 }
