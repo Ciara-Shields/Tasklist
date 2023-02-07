@@ -1,4 +1,4 @@
-package entity;
+package com.thg.accerator.mytasklist.entity;
 
 
 import jakarta.persistence.*;
