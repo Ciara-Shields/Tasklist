@@ -1,16 +1,14 @@
 package com.thg.accerator.mytasklist.controller;
 
-import com.thg.accerator.mytasklist.entity.Database;
 import com.thg.accerator.mytasklist.service.DatabaseService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-ç
+import java.util.List;
 
 @RestController
 public class DatabaseController {
-
 	@Autowired
 	DatabaseService databaseService;
 
@@ -19,8 +17,8 @@ public class DatabaseController {
 //		this.databaseService = databaseService;
 
 
-	@GetMapping("/tasklist")
-	public List<Database> getAllTasks(){
+	@GetMapping("/tasks")
+	public List getAllTasks(){
 		return databaseService.getAllTasks();
 	}
 

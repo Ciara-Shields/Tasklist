@@ -2,11 +2,10 @@ package com.thg.accerator.mytasklist.entity;
 
 
 import jakarta.persistence.*;
-import org.hibernate.annotations.GenericGenerator;
 
 
 @Table(name = "DATABASE")
-//@Entity
+@Entity
 public class Database {
 
     @Id
