@@ -12,6 +12,8 @@ import org.springframework.web.bind.annotation.RestController;
 import repository.DatabaseRepository;
 import service.DatabaseService;
 
+import java.util.ArrayList;
+
 @SpringBootApplication
 @RestController
 public class MyTasklistApplication {
@@ -26,25 +28,20 @@ public class MyTasklistApplication {
 //	implements CommandLineRunner
 
 //	private static final Logger log = LoggerFactory.getLogger(MyTasklistApplication.class);
-//
-//	private final DatabaseRepository databaseRepository;
-//
-//	@Autowired
-//	public MyTasklistApplication(DatabaseRepository databaseRepository) {this.databaseRepository = databaseRepository;}
 
 	public static void main(String[] args) {
 		SpringApplication.run(MyTasklistApplication.class, args);
 	}
 
-	@GetMapping("/urMa")
-	public String urMa(){
-		return "I Heart Ur Ma";
+	@GetMapping("/tasklist")
+	public ArrayList<Database> getAllTasks(){
+		return databaseService.getAllTasks();
 	}
 
-	@GetMapping("/hello")
-	public String sayHello(@RequestParam(value = "myName") String name){
-		return String.format("Hello %s!", name);
-	}
+//	@GetMapping("/hello")
+//	public String sayHello(@RequestParam(value = "myName") String name){
+//		return String.format("Hello %s!", name);
+//	}
 //	@Override
 //	public void  run(String... args) throws Exception{
 //		log.info("delete anything that exists");

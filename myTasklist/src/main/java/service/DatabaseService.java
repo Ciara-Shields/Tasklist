@@ -11,12 +11,11 @@ import java.util.ArrayList;
 @Service
 public class DatabaseService {
     DatabaseRepository databaseRepository;
-
     @Autowired
     public DatabaseService(DatabaseRepository databaseRepository) {
         this.databaseRepository = databaseRepository;
     }
-    public List<Task> getAllTasks() {
+    public ArrayList<Database> getAllTasks() {
         return new ArrayList<>(databaseRepository.findAll());
     }
 
