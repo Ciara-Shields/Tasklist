@@ -1,0 +1,1 @@
+INSERT INTO tasks (id, taskName, priority, completed, inProgress) VALUES (1, "eat", 1, true, true);
