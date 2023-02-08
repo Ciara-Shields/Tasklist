@@ -3,9 +3,9 @@ package com.thg.accerator.mytasklist.controller;
 import com.thg.accerator.mytasklist.entity.Tasks;
 import com.thg.accerator.mytasklist.service.TasksService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -28,6 +28,26 @@ public class TasksController {
 		return tasksService.getTasksById(id);
 	}
 
+	@PostMapping("/tasks")
+	private ResponseEntity createTasks(@RequestBody Tasks tasks) {
+		try {
+			tasksService.saveOrUpdate(tasks);
+		} catch (Exception exception){
+			return new ResponseEntity(HttpStatus.INTERNAL_SERVER_ERROR);
+		}
+		return new ResponseEntity("New task created with id:" + tasks.getId(), HttpStatus.CREATED);
+	}
+
+	@DeleteMapping("/tasks/{id}")
+	private  ResponseEntity deleteById(@PathVariable("id") int id) {
+		try {
+			tasksService.delete(id);
+		} catch (Exception exception){
+			return new ResponseEntity(HttpStatus.INTERNAL_SERVER_ERROR);
+		}
+		return new ResponseEntity("New task created with id:" + id, HttpStatus.OK);
+
+	}
 
 //	@GetMapping("/hello")
 //	public String sayHello(@RequestParam(value = "myName") String name){

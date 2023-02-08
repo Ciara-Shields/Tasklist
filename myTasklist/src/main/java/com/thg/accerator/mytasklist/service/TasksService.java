@@ -23,5 +23,11 @@ public class TasksService {
     public Tasks getTasksById(int id) {
         return tasksRepository.findById(id).get(id);
     }
+    public void saveOrUpdate(Tasks tasks) {
+        tasksRepository.save(tasks);
+    }
+    public void delete(long id) {
+        tasksRepository.deleteById(id);
+    }
 
 }
