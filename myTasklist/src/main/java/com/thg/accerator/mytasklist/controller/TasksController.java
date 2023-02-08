@@ -45,7 +45,7 @@ public class TasksController {
 		} catch (Exception exception){
 			return new ResponseEntity(HttpStatus.INTERNAL_SERVER_ERROR);
 		}
-		return new ResponseEntity("New task created with id:" + id, HttpStatus.OK);
+		return new ResponseEntity("Task deleted with id:" + id, HttpStatus.OK);
 
 	}
 
