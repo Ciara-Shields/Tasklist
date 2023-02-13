@@ -1,13 +1,11 @@
-export interface TasksResponse {
-  tasks: Task[];
-}
+export type TasksResponse = Task[];
 
 export interface Task {
-  id: any;
-  taskName: string;
-  priority: any;
-  completed: boolean;
-  inProgress: boolean;
+  id: string | null;
+  taskName: string | null;
+  priority: string | null;
+  completed: boolean | null;
+  inProgress: boolean | null;
 }
 
 // export const App: React.FC<

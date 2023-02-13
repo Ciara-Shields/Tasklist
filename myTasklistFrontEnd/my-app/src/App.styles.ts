@@ -5,6 +5,16 @@ const Main = styled.main`
   text-align: center;
 `;
 
-const styles = { Main };
+const ResultProps = styled.div`
+  background-color: #eee;
+  padding: 1em;
+  margin: 1em auto;
+  display: flex;
+  align-items: center;
+  width: 750px;
+  ont-size: 0.8em;
+`;
+
+const styles = { Main, ResultProps };
 
 export default styles;
