@@ -14,17 +14,14 @@ public class Tasks {
     String taskName;
     int priority;
 
-    boolean completed;
-
-    boolean inProgress;
+    String progress;
 
 
-    public Tasks(int id, String taskName, int priority, boolean completed, boolean inProgress ) {
+    public Tasks(int id, String taskName, int priority, String progress ) {
         this.id = id;
         this.taskName = taskName;
         this.priority = priority;
-        this.completed = completed;
-        this.inProgress = inProgress;
+        this.progress = progress;
     }
 
     public Tasks(){
@@ -38,11 +35,11 @@ public class Tasks {
         this.id = id;
     }
 
-    public String getName() {
+    public String getTaskName() {
         return taskName;
     }
 
-    public void setName(String taskName) {
+    public void setTaskName(String taskName) {
         this.taskName = taskName;
     }
 
@@ -53,15 +50,19 @@ public class Tasks {
     public void setPriority(int priority) {
         this.priority = priority;
     }
-    public boolean isCompleted() {
-        return true;
-    }
+
+    public  String getProgress(){return progress;}
+
+    public void setProgress(String progress) {this.progress = progress;}
+//    public boolean isCompleted() {
+//        return true;
+//    }
 //    public void setCompleted(boolean completed) {
 //        this.completed = completed;
 //    }
-    public boolean isInProgress() {
-        return true;
-    }
+//    public boolean isInProgress() {
+//        return true;
+//    }
 //    public void setInProgress(boolean inProgress) {
 //        this.inProgress = inProgress;
 //    }

@@ -23,11 +23,19 @@ public class TasksService {
     public Tasks getTasksById(int id) {
         return tasksRepository.findById(id).get(id);
     }
-    public void saveOrUpdate(Tasks tasks) {
-        tasksRepository.save(tasks);
+    public Tasks saveOrUpdate(Tasks tasks) {
+        return tasksRepository.save(tasks);
     }
     public void delete(long id) {
         tasksRepository.deleteById(id);
     }
+
+    public List<Tasks> getTaskByProgress (String progress){
+       return tasksRepository.findByProgress(progress);
+    }
+
+//    public Optional <List<Tasks> >getTaskByPriority (int priority){
+//        return tasksRepository.findByPriority(priority);
+//    }
 
 }

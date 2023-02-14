@@ -28,15 +28,19 @@ public class TasksController {
 		return tasksService.getTasksById(id);
 	}
 
-	@PostMapping("/tasks")
+	@PostMapping("/tasks/add")
 	private ResponseEntity createTasks(@RequestBody Tasks tasks) {
 		try {
 			tasksService.saveOrUpdate(tasks);
 		} catch (Exception exception){
 			return new ResponseEntity(HttpStatus.INTERNAL_SERVER_ERROR);
 		}
-		return new ResponseEntity("New task created with id:" + tasks.getId(), HttpStatus.CREATED);
+		return new ResponseEntity( tasks, HttpStatus.CREATED);
 	}
+//
+//	@PutMapping("/tasks/{id}")
+//
+//	}
 
 	@DeleteMapping("/tasks/{id}")
 	private  ResponseEntity deleteById(@PathVariable("id") int id) {
@@ -45,7 +49,7 @@ public class TasksController {
 		} catch (Exception exception){
 			return new ResponseEntity(HttpStatus.INTERNAL_SERVER_ERROR);
 		}
-		return new ResponseEntity("Task deleted with id:" + id, HttpStatus.OK);
+		return new ResponseEntity( id, HttpStatus.OK);
 
 	}
 
