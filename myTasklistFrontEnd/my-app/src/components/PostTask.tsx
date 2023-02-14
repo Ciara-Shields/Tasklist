@@ -11,14 +11,17 @@ export const PostTask: React.FC<Props> = ({ onPost }) => {
   // const nameInput = useRef<HTMLInputElement>(null);
   const [priority, setPriority] = useState("");
   const [taskName, setTaskName] = useState("");
-  const completed = false;
-  const inProgress = true;
+  const [progress, setProgress] = useState("Select Progress");
 
   const handleTaskChange = (e: ChangeEvent<HTMLInputElement>) => {
     setTaskName(e.target.value);
   };
   const handlePriorityChange = (e: ChangeEvent<HTMLInputElement>) => {
     setPriority(e.target.value);
+  };
+
+  const handleProgressChange = (e: ChangeEvent<HTMLSelectElement>) => {
+    setProgress(e.target.value);
   };
 
   // const handleCompletedChange = () => {
@@ -32,8 +35,7 @@ export const PostTask: React.FC<Props> = ({ onPost }) => {
     const payload = JSON.stringify({
       taskName,
       priority,
-      completed,
-      inProgress,
+      progress,
     });
 
     fetch("api/tasks/add", {
@@ -52,6 +54,7 @@ export const PostTask: React.FC<Props> = ({ onPost }) => {
       .catch((error) => {
         console.log(error);
       });
+    console.log(progress);
   };
   // const handleTaskAdd = (task: string) => {
   //   setTask((tasks) => {
@@ -66,14 +69,31 @@ export const PostTask: React.FC<Props> = ({ onPost }) => {
         <span className="material-symbols-outlined">enter task name</span>
       </button> */}
       <s.ResultProps>
-        <h2> task name </h2>
-        <input id="taskName" value={taskName} onChange={handleTaskChange} />
-        <input id="priority" value={priority} onChange={handlePriorityChange} />
+        <h2> Create Task </h2>
+        <input
+          id="taskName"
+          value={taskName}
+          placeholder={"Task"}
+          onChange={handleTaskChange}
+        />
+        <input
+          id="priority"
+          value={priority}
+          placeholder={"Priority"}
+          onChange={handlePriorityChange}
+        />
+        <select id="progress" value={progress} onChange={handleProgressChange}>
+          <option value={"Select Progress"}>Select Progress</option>
+          <option value={"Not Started"}>Not Started</option>
+          <option value={"In Progress"}>In Progress</option>
+          <option value={"Completed"}>Completed</option>
+        </select>
         <button onClick={handleAdd}>Add</button>
         {/* <button className={"completedButton"} onClick={handleCompletedChange}> */}
         {/* Complete this bitch */}
         {/* </button> */}
       </s.ResultProps>
+      {/* <button onClick={handleDelete}>Delete</button> */}
     </s.Main>
   );
 };
