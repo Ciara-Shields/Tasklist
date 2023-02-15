@@ -9,11 +9,11 @@ import java.util.List;
 @Repository
 public interface TasksRepository extends JpaRepository<Tasks, Long> {
 
-    List<Tasks> findByTaskName(String taskName);
+//    List<Tasks> findByTaskName(String taskName);
 
-    List<Tasks> findById(int id);
+//    List<Tasks> findById(long id);
 
     List<Tasks> findByProgress(String progress);
 
-//    List<Tasks> findByPriority (int priority);
+    List<Tasks> findByPriority (int priority);
 }

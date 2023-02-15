@@ -14,23 +14,24 @@ public class TasksController {
 	@Autowired
 	TasksService tasksService;
 
-//	@Autowired
-//	public MyTasklistApplication(final DatabaseService databaseService) {
-//		this.databaseService = databaseService;
-
 
 	@GetMapping("/tasks")
 	public List<Tasks> getAllTasks(){
 		return tasksService.getAllTasks();
 	}
 	@GetMapping("/tasks/{id}")
-	private Tasks getTaskById(@PathVariable int id){
+	public Tasks getTaskById(@PathVariable("id") long id){
 		return tasksService.getTasksById(id);
 	}
-	@GetMapping("/tasks/{progress}")
+	@GetMapping("/tasks/progress/{progress}")
 	public List<Tasks> getTasksByProgress(@PathVariable("progress") String progress)
 	{
 		return tasksService.getTaskByProgress(progress);
+	}
+
+	@GetMapping("/tasks/priority/{priority}")
+	public  List<Tasks> getTaskByPriority(@PathVariable("priority") int priority) {
+		return tasksService.getTaskByPriority(priority);
 	}
 
 	@PostMapping("/tasks/add")
@@ -48,7 +49,7 @@ public class TasksController {
 //	}
 
 	@DeleteMapping("/tasks/{id}")
-	private  ResponseEntity deleteById(@PathVariable("id") int id) {
+	private  ResponseEntity deleteById(@PathVariable("id") long id) {
 		try {
 			tasksService.delete(id);
 		} catch (Exception exception){

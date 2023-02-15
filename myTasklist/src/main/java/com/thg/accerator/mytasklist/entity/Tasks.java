@@ -10,14 +10,14 @@ public class Tasks {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    int id;
+    long id;
     String taskName;
     int priority;
 
     String progress;
 
 
-    public Tasks(int id, String taskName, int priority, String progress ) {
+    public Tasks(long id, String taskName, int priority, String progress ) {
         this.id = id;
         this.taskName = taskName;
         this.priority = priority;
@@ -27,11 +27,11 @@ public class Tasks {
     public Tasks(){
 
     }
-    public int getId() {
+    public long getId() {
         return id;
     }
 
-    private void setId(int id) {
+    private void setId(long id) {
         this.id = id;
     }
 

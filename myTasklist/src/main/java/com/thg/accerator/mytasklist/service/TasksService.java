@@ -7,12 +7,13 @@ import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class TasksService {
     @Autowired
     TasksRepository tasksRepository;
-    @Autowired
+//    @Autowired
     public TasksService(TasksRepository tasksRepository) {
         this.tasksRepository = tasksRepository;
     }
@@ -20,8 +21,10 @@ public class TasksService {
         return new ArrayList<>(tasksRepository.findAll());
     }
 
-    public Tasks getTasksById(int id) {
-        return tasksRepository.findById(id).get(id);
+    public Tasks getTasksById(long id) {
+//        Tasks task = (Tasks) this.tasksRepository.findById(id);
+        Optional<Tasks> task = this.tasksRepository.findById(id);
+        return task.orElse(null);
     }
     public Tasks saveOrUpdate(Tasks tasks) {
         return tasksRepository.save(tasks);
@@ -34,8 +37,8 @@ public class TasksService {
        return tasksRepository.findByProgress(progress);
     }
 
-//    public Optional <List<Tasks> >getTaskByPriority (int priority){
-//        return tasksRepository.findByPriority(priority);
-//    }
+    public List<Tasks> getTaskByPriority (int priority){
+        return tasksRepository.findByPriority(priority);
+    }
 
 }
