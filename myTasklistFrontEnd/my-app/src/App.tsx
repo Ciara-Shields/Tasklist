@@ -4,6 +4,7 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import { Task, TasksResponse } from "./types";
 import { ResultProps } from "./ResultProps";
 import { PostTask } from "./components/PostTask";
+// import { TaskProgress } from "./components/GetByProgress";
 // import { Dropdown, Option } from "./components/Dropdown";
 // import { PostTask } from "./my-app/src/components/PostTask/PostTask";
 // import "./setupProxy";
@@ -13,9 +14,11 @@ export const App = () => {
   const [error, setError] = useState(false);
   const [query, setQuery] = useState<string>("tasks");
   const [posty, setPosty] = useState<string | undefined>(undefined);
+  const [fetchURL, setFetchURL] = useState("/api/tasks");
+  const [render, setRender] = useState(0);
   // const [error, setError] = useState(false);
   useEffect(() => {
-    fetch(`/api/tasks`, {
+    fetch(fetchURL, {
       method: "GET",
     })
       .then((res) => res.json())
@@ -25,21 +28,7 @@ export const App = () => {
       .catch(() => {
         setError(true);
       });
-    // .finally(() => {
-    //   setLoadin
-    // })
-    // .then((response) => {
-    //   return response.json();
-    // })
-    // .then((responseJson: TasksResponse) => {
-    //   setTasks(responseJson);
-    //   setError(false);
-    // })
-    // .catch((error) => {
-    //   console.log(error);
-    //   setError(true);
-    // });r
-  }, [posty]);
+  }, [render, posty, fetchURL]);
 
   const handleTaskAdd = (task: Task) => {
     setTasks((tasks) => {
@@ -47,20 +36,33 @@ export const App = () => {
       return updatedTasks;
     });
   };
+  const handleShowAll = () => {
+    setFetchURL("api/tasks");
+  };
+  const handleNotStarted = () => {
+    setFetchURL("api/tasks/progress/Not%20Started");
+  };
 
-  // const handleDelete (id){
-  //   fetch("api/tasks/{id}", {
-  //     method: "DELETE",
-  //     headers: { "Content-Type": "application/json" },
-  //   }).catch((error) => {
-  //     console.log(error);
-  //   });
-  // };
+  const handleInProgress = () => {
+    setFetchURL("api/tasks/progress/In%20Progress");
+  };
+  const handleCompleted = () => {
+    setFetchURL("api/tasks/progress/Completed");
+  };
+  const handleOrderPriority = () => {
+    setFetchURL("api/tasks/priority");
+  };
 
   return (
     <s.Main>
       <h1>Tasklist</h1>
       <PostTask onPost={handleTaskAdd} />
+      <button onClick={handleShowAll}>Show All</button>
+      <button onClick={handleNotStarted}>Not Started</button>
+      <button onClick={handleInProgress}>In Progress</button>
+      <button onClick={handleCompleted}>Completed</button>
+      <button onClick={handleOrderPriority}>Order</button>
+
       {tasks.map((task) => (
         <ResultProps
           id={task.id}
