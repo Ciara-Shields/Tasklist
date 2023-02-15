@@ -12,6 +12,7 @@ public class Tasks {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     long id;
     String taskName;
+   @Column(name = "priority")
     int priority;
 
     String progress;

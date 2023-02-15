@@ -29,9 +29,9 @@ public class TasksController {
 		return tasksService.getTaskByProgress(progress);
 	}
 
-	@GetMapping("/tasks/priority/{priority}")
-	public  List<Tasks> getTaskByPriority(@PathVariable("priority") int priority) {
-		return tasksService.getTaskByPriority(priority);
+	@GetMapping("/tasks/priority")
+	public  List<Tasks> getTaskByPriority() {
+		return tasksService.getTaskByPriority();
 	}
 
 	@PostMapping("/tasks/add")

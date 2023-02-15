@@ -37,8 +37,8 @@ public class TasksService {
        return tasksRepository.findByProgress(progress);
     }
 
-    public List<Tasks> getTaskByPriority (int priority){
-        return tasksRepository.findByPriority(priority);
+    public List<Tasks> getTaskByPriority (){
+        return tasksRepository.findByOrderByPriority();
     }
 
 }

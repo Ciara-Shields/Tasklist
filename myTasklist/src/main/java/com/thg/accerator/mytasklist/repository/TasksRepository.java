@@ -15,5 +15,5 @@ public interface TasksRepository extends JpaRepository<Tasks, Long> {
 
     List<Tasks> findByProgress(String progress);
 
-    List<Tasks> findByPriority (int priority);
+    List<Tasks> findByOrderByPriority();
 }
