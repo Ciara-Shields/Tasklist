@@ -45,12 +45,12 @@ export const ResultProps: React.FC<Props> = ({
     <s.ResultProps>
       ID: {id}, Task: {taskName}, Priority: {priority}, Progress: {progress}
       <button onClick={handleDelete}>Delete</button>
-      {/* <select id="progress" value={progress} onChange={handleProgressChange}>
+      <select id="progress" value={progress} onChange={handleProgressChange}>
         <option value={"Select Progress"}>Select Progress</option>
         <option value={"Not Started"}>Not Started</option>
         <option value={"In Progress"}>In Progress</option>
         <option value={"Completed"}>Completed</option>
-      </select> */}
+      </select>
     </s.ResultProps>
   );
 };
