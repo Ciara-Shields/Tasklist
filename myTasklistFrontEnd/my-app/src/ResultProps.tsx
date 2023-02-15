@@ -27,8 +27,8 @@ export const ResultProps: React.FC<Props> = ({
     fetch(`api/tasks/${id}`, {
       method: "DELETE",
       headers: { "Content-Type": "application/json" },
-    }).catch((error) => {
-      console.log(error);
+    }).then(() => {
+      window.location.reload();
     });
   };
 
