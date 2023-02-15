@@ -24,8 +24,13 @@ public class TasksController {
 		return tasksService.getAllTasks();
 	}
 	@GetMapping("/tasks/{id}")
-	private Tasks getTaskById(@PathVariable("id") int id){
+	private Tasks getTaskById(@PathVariable int id){
 		return tasksService.getTasksById(id);
+	}
+	@GetMapping("/tasks/{progress}")
+	public List<Tasks> getTasksByProgress(@PathVariable("progress") String progress)
+	{
+		return tasksService.getTaskByProgress(progress);
 	}
 
 	@PostMapping("/tasks/add")
