@@ -1,9 +1,9 @@
-import styled from "styled-components";
+import styled, { keyframes } from "styled-components";
+import myImage from "./JackBlack.jpeg";
 
 const Main = styled.main`
   padding: 2em;
   text-align: center;
-  background-color: #265f14;
 `;
 
 const ResultProps = styled.div`
@@ -15,10 +15,28 @@ const ResultProps = styled.div`
   width: 750px;
   ont-size: 0.8em;
 `;
+const rotate = keyframes`
+from {
+    transform: rotate(0deg);
+}
+to{
+    transform:rotate(360deg);
+}
+`;
+const image = styled.img`
+  width: 300px;
+  height: 350px;
+  background-image: url(${myImage});
+  animation-name: ${rotate};
+  animation-duration: 5s;
+  animation-iteration-count: infinite;
+  animation-timing-function: linear;
+`;
 
 const styles = {
   Main,
   ResultProps,
+  image,
 };
 
 export default styles;

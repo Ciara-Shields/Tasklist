@@ -4,6 +4,7 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import { Task, TasksResponse } from "./types";
 import { ResultProps } from "./ResultProps";
 import { PostTask } from "./components/PostTask";
+import myImage from "./JackBlack.jpeg";
 
 export const App = () => {
   const [tasks, setTasks] = useState<Task[]>([]);
@@ -69,6 +70,7 @@ export const App = () => {
       {tasks.map((task) => (
         <ResultProps key={task.id} task={task} onUpdate={handleUpdate} />
       ))}
+      <s.image src={myImage} alt="" />
     </s.Main>
   );
 };
