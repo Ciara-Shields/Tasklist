@@ -44,9 +44,15 @@ public class TasksController {
 		return new ResponseEntity( tasks, HttpStatus.CREATED);
 	}
 //
-//	@PutMapping("/tasks/{id}")
-//
-//	}
+	@PutMapping("/tasks/{id}")
+	public ResponseEntity<Long> editTask(@RequestBody Tasks newTask, @PathVariable("id") Long id) {
+		Tasks editTask = this.tasksService.getTasksById(id);
+
+		editTask.setProgress(newTask.getProgress());
+		this.tasksService.edit(editTask);
+
+		return new ResponseEntity<>(id, HttpStatus.OK);
+	}
 
 	@DeleteMapping("/tasks/{id}")
 	private  ResponseEntity deleteById(@PathVariable("id") long id) {
