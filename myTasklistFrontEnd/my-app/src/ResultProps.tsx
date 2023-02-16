@@ -1,30 +1,16 @@
-import { useState } from "react";
+// import { useState, ChangeEvent } from "react";
 import { Task } from "./types";
 import s from "./App.styles";
+import { ChangeEvent } from "react";
 
-// const handleDelete = () => {
-//   fetch("api/tasks/{id}", {
-//     method: "DELETE",
-//     headers: { "Content-Type": "application/json" },
-//   }).catch((error) => {
-//     console.log(error);
-//   });
-// };
 interface Props {
-  id: string | null;
-  taskName: string | null;
-  priority: string | null;
-  progress: string | number | readonly string[] | undefined;
+  task: Task;
+  onUpdate: (task: Task) => void;
 }
 
-export const ResultProps: React.FC<Props> = ({
-  id,
-  taskName,
-  priority,
-  progress,
-}) => {
+export const ResultProps: React.FC<Props> = ({ task, onUpdate }) => {
   const handleDelete = () => {
-    fetch(`api/tasks/${id}`, {
+    fetch(`api/tasks/${task.id}`, {
       method: "DELETE",
       headers: { "Content-Type": "application/json" },
     }).then(() => {
@@ -32,20 +18,36 @@ export const ResultProps: React.FC<Props> = ({
     });
   };
 
-  const handleProgressChange = () => {
-    fetch(`api/tasks/add`, {
+  const handleProgressChangeTo = (e: ChangeEvent<HTMLSelectElement>) => {
+    const updatedProgress = e.target.value;
+    const payload = JSON.stringify({
+      ...task,
+      progress: updatedProgress,
+    });
+    fetch(`api/tasks/${task.id}`, {
       method: "PUT",
       headers: { "Content-Type": "application/json" },
-    }).catch((error) => {
-      console.log(error);
-    });
+      body: payload,
+    })
+      .then((res) => {
+        onUpdate({ ...task, progress: updatedProgress });
+        console.log("HI");
+      })
+      .catch((error) => {
+        console.log(error);
+      });
   };
 
   return (
     <s.ResultProps>
-      ID: {id}, Task: {taskName}, Priority: {priority}, Progress: {progress}
+      ID: {task.id}, Task: {task.taskName}, Priority: {task.priority}, Progress:{" "}
+      {task.progress}
       <button onClick={handleDelete}>Delete</button>
-      <select id="progress" value={progress} onChange={handleProgressChange}>
+      <select
+        id="progress"
+        value={task.progress}
+        onChange={handleProgressChangeTo}
+      >
         <option value={"Select Progress"}>Select Progress</option>
         <option value={"Not Started"}>Not Started</option>
         <option value={"In Progress"}>In Progress</option>

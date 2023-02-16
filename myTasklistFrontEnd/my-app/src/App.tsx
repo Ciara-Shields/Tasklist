@@ -4,19 +4,15 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import { Task, TasksResponse } from "./types";
 import { ResultProps } from "./ResultProps";
 import { PostTask } from "./components/PostTask";
-// import { TaskProgress } from "./components/GetByProgress";
-// import { Dropdown, Option } from "./components/Dropdown";
-// import { PostTask } from "./my-app/src/components/PostTask/PostTask";
-// import "./setupProxy";
 
 export const App = () => {
   const [tasks, setTasks] = useState<Task[]>([]);
   const [error, setError] = useState(false);
-  const [query, setQuery] = useState<string>("tasks");
+
   const [posty, setPosty] = useState<string | undefined>(undefined);
   const [fetchURL, setFetchURL] = useState("/api/tasks");
-  const [render, setRender] = useState(0);
-  // const [error, setError] = useState(false);
+  const [render, setRender] = useState("");
+
   useEffect(() => {
     fetch(fetchURL, {
       method: "GET",
@@ -53,6 +49,13 @@ export const App = () => {
     setFetchURL("api/tasks/priority");
   };
 
+  const handleUpdate = (task: Task) => {
+    const updatedTasks = tasks.map((existingTask) =>
+      existingTask.id === task.id ? task : existingTask
+    );
+    setTasks(updatedTasks);
+  };
+
   return (
     <s.Main>
       <h1>Tasklist</h1>
@@ -64,17 +67,9 @@ export const App = () => {
       <button onClick={handleOrderPriority}>Order</button>
 
       {tasks.map((task) => (
-        <ResultProps
-          id={task.id}
-          key={task.id}
-          taskName={task.taskName}
-          priority={task.priority}
-          progress={task.progress}
-        />
-        // <button onClick={handleDelete}>Delete</button>
+        <ResultProps key={task.id} task={task} onUpdate={handleUpdate} />
       ))}
     </s.Main>
   );
 };
 export default App;
-// onPost={handleTaskAdd}
