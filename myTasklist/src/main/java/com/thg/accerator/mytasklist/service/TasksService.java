@@ -38,7 +38,7 @@ public class TasksService {
     }
 
     public List<Tasks> getTaskByPriority (){
-        return tasksRepository.findByOrderByPriority();
+        return tasksRepository.findByOrderByPriorityDesc();
     }
     public void edit(Tasks tasks){
         this.tasksRepository.save(tasks);
