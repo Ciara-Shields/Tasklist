@@ -14,9 +14,9 @@ const ResultProps = styled.div`
   background-image: url(${leafs});
   padding: 1em;
   margin: 1em auto;
-  display: flex;
+  display: flex-inline;
   align-items: center;
-  width: 950px;
+  // width: 950px;
   ont-size: 0.8em;
 `;
 const rotate = keyframes`
@@ -28,9 +28,10 @@ to{
 }
 `;
 const image = styled.img`
-  margin: 50px;
-  width: 300px;
-  height: 350px;
+  margin: 50px auto;
+  width: 250px;
+  height: 300px;
+  display: flex-inline;
   background-image: url(${myImage});
   animation-name: ${rotate};
   animation-duration: 5s;
