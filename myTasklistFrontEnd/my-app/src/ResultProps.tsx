@@ -1,7 +1,7 @@
 // import { useState, ChangeEvent } from "react";
 import { Task } from "./types";
 import s from "./App.styles";
-import { ChangeEvent } from "react";
+import { ChangeEvent, useState } from "react";
 
 interface Props {
   task: Task;
@@ -17,6 +17,9 @@ export const ResultProps: React.FC<Props> = ({ task, onUpdate }) => {
       window.location.reload();
     });
   };
+
+  const [hide, setHide] = useState(false);
+  const [hide2, setHide2] = useState(false);
 
   const handleProgressChangeTo = (e: ChangeEvent<HTMLSelectElement>) => {
     const updatedProgress = e.target.value;
@@ -38,21 +41,57 @@ export const ResultProps: React.FC<Props> = ({ task, onUpdate }) => {
       });
   };
 
+  const handlePriorityChangeTo = (e: ChangeEvent<HTMLInputElement>) => {
+    const updatedPriority = e.target.value;
+    const payload = JSON.stringify({
+      ...task,
+      priority: updatedPriority,
+    });
+    fetch(`api/tasks/${task.id}`, {
+      method: "PUT",
+      headers: { "Content-Type": "application/json" },
+      body: payload,
+    })
+      .then((res) => {
+        onUpdate({ ...task, priority: updatedPriority });
+        console.log("HI");
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  };
+
   return (
     <s.ResultProps>
-      ID: {task.id}, Task: {task.taskName}, Priority: {task.priority}, Progress:{" "}
-      {task.progress}
-      <button onClick={handleDelete}>Delete</button>
-      <select
-        id="progress"
-        value={task.progress}
-        onChange={handleProgressChangeTo}
-      >
-        <option value={"Select Progress"}>Select Progress</option>
-        <option value={"Not Started"}>Not Started</option>
-        <option value={"In Progress"}>In Progress</option>
-        <option value={"Completed"}>Completed</option>
-      </select>
+      <s.text>
+        Task: {task.taskName}, Priority: {task.priority}, Progress:{" "}
+        {task.progress}
+      </s.text>
+
+      <s.Button onClick={handleDelete}>Delete</s.Button>
+
+      {hide && (
+        <select
+          id="progress"
+          value={task.progress}
+          onChange={handleProgressChangeTo}
+        >
+          <option value={"Select Progress"}>Select Progress</option>
+          <option value={"Not Started"}>Not Started</option>
+          <option value={"In Progress"}>In Progress</option>
+          <option value={"Completed"}>Completed</option>
+        </select>
+      )}
+      <s.Button onClick={() => setHide(!hide)}>Update Progress</s.Button>
+      {hide2 && (
+        <input
+          id="priority"
+          value={task.priority}
+          placeholder={"Priority"}
+          onChange={handlePriorityChangeTo}
+        />
+      )}
+      <s.Button onClick={() => setHide2(!hide2)}>Update Priority</s.Button>
     </s.ResultProps>
   );
 };

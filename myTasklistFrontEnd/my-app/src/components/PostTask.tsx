@@ -50,26 +50,26 @@ export const PostTask: React.FC<Props> = ({ onPost }) => {
 
   return (
     <s.Main>
-      <h2> Create Task </h2>
-      <input
+      <s.h2> Create Task </s.h2>
+      <s.Input
         id="taskName"
         value={taskName}
-        placeholder={"Task"}
+        placeholder={"Enter Task"}
         onChange={handleTaskChange}
       />
-      <input
+      <s.Input
         id="priority"
         value={priority}
-        placeholder={"Priority"}
+        placeholder={"Enter Priority"}
         onChange={handlePriorityChange}
       />
-      <select id="progress" value={progress} onChange={handleProgressChange}>
+      <s.select id="progress" value={progress} onChange={handleProgressChange}>
         <option value={"Select Progress"}>Select Progress</option>
         <option value={"Not Started"}>Not Started</option>
         <option value={"In Progress"}>In Progress</option>
         <option value={"Completed"}>Completed</option>
-      </select>
-      <button onClick={handleAdd}>Add</button>
+      </s.select>
+      <s.Button3 onClick={handleAdd}>Add</s.Button3>
     </s.Main>
   );
 };

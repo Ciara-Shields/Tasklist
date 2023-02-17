@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import s from "./App.styles";
 import "bootstrap/dist/css/bootstrap.min.css";
-import { Task, TasksResponse } from "./types";
+import { Task } from "./types";
 import { ResultProps } from "./ResultProps";
 import { PostTask } from "./components/PostTask";
 import myImage from "./JackBlack.jpeg";
@@ -59,14 +59,16 @@ export const App = () => {
 
   return (
     <s.Main>
-      <h1>Tasklist</h1>
-      <PostTask onPost={handleTaskAdd} />
-      <button onClick={handleShowAll}>Show All</button>
-      <button onClick={handleNotStarted}>Not Started</button>
-      <button onClick={handleInProgress}>In Progress</button>
-      <button onClick={handleCompleted}>Completed</button>
-      <button onClick={handleOrderPriority}>Order</button>
+      <s.h1>Tasklist</s.h1>
 
+      <PostTask onPost={handleTaskAdd} />
+      {/* <s.Button> */}
+      <s.Button2 onClick={handleShowAll}>Show All</s.Button2>
+      <s.Button2 onClick={handleNotStarted}>Not Started</s.Button2>
+      <s.Button2 onClick={handleInProgress}>In Progress</s.Button2>
+      <s.Button2 onClick={handleCompleted}>Completed</s.Button2>
+      <s.Button2 onClick={handleOrderPriority}>Order</s.Button2>
+      {/* </s.Button> */}
       {tasks.map((task) => (
         <ResultProps key={task.id} task={task} onUpdate={handleUpdate} />
       ))}
