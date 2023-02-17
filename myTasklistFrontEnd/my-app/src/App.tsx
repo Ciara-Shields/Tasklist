@@ -59,7 +59,7 @@ export const App = () => {
 
   return (
     <s.Main>
-      <s.h1>Tasklist</s.h1>
+      <s.h1>To Dobedobedo List</s.h1>
 
       <PostTask onPost={handleTaskAdd} />
       {/* <s.Button> */}

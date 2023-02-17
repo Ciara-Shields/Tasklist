@@ -71,7 +71,7 @@ export const ResultProps: React.FC<Props> = ({ task, onUpdate }) => {
       <s.Button onClick={handleDelete}>Delete</s.Button>
 
       {hide && (
-        <select
+        <s.select
           id="progress"
           value={task.progress}
           onChange={handleProgressChangeTo}
@@ -80,11 +80,11 @@ export const ResultProps: React.FC<Props> = ({ task, onUpdate }) => {
           <option value={"Not Started"}>Not Started</option>
           <option value={"In Progress"}>In Progress</option>
           <option value={"Completed"}>Completed</option>
-        </select>
+        </s.select>
       )}
       <s.Button onClick={() => setHide(!hide)}>Update Progress</s.Button>
       {hide2 && (
-        <input
+        <s.Input
           id="priority"
           value={task.priority}
           placeholder={"Priority"}

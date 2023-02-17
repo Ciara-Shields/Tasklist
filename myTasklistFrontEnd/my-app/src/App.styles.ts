@@ -3,9 +3,11 @@ import myImage from "./JackBlack.jpeg";
 import leafs from "./leafs.jpeg";
 
 const Main = styled.main`
-  padding: 2em;
+  padding: 1em;
   text-align: center;
   background-color: lemonchiffon;
+  justify-content: center;
+  align-items: center;
 `;
 
 const ResultProps = styled.div`
@@ -14,7 +16,7 @@ const ResultProps = styled.div`
   margin: 1em auto;
   display: flex;
   align-items: center;
-  width: 750px;
+  width: 950px;
   ont-size: 0.8em;
 `;
 const rotate = keyframes`
@@ -66,7 +68,7 @@ const Button = styled.button`
 `;
 
 const Button2 = styled.button`
-  display: inline-block;
+  display: inline-flex;
   border-radius: 3px;
   padding: 0.5rem 0.5rem;
   margin: 0.5rem 1rem;
@@ -80,7 +82,7 @@ const Button2 = styled.button`
   font-weight: bold;
 `;
 const Button3 = styled.button`
-  display: inline-block;
+  display: inline-flex;
   border-radius: 3px;
   padding: 0.5rem 0.5rem;
   margin: 0.5rem 1rem;
@@ -95,7 +97,7 @@ const Button3 = styled.button`
 `;
 
 const Input = styled.input`
-  display: inline-block;
+  display: inline-flex;
   border-radius: 3px;
   padding: 0.5rem 0.5rem;
   margin: 0.5rem 1rem;
@@ -110,7 +112,7 @@ const Input = styled.input`
 `;
 
 const select = styled.select`
-  display: inline-block;
+  display: inline-flex
   border-radius: 3px;
   padding: 0.5rem 0.5rem;
   margin: 0.5rem 1rem;
