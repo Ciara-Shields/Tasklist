@@ -31,7 +31,7 @@ const image = styled.img`
   margin: 50px auto;
   width: 250px;
   height: 300px;
-  display: flex-inline;
+  display: flex;
   background-image: url(${myImage});
   animation-name: ${rotate};
   animation-duration: 5s;
